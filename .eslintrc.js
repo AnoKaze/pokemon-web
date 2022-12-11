@@ -1,0 +1,30 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    'vue/setup-compiler-macros': true,
+  },
+  extends: ['plugin:vue/vue3-recommended', 'eslint:recommended', 'airbnb-base', 'plugin:prettier/recommended', 'prettier', './.eslintrc-auto-import.json'],
+  parserOptions: {
+    ecmaVersion: 13,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'moudle',
+  },
+  plugins: ['vue', '@typescript-eslint'],
+  rules: {
+    'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
+    'no-debugger': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
+    'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
+    'import/resolver': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'no-unused-expressions': 'off',
+    'no-param-reassign': 'off',
+    'no-unused-vars': ['error', { varsIgnorePattern: '.*', args: 'none' }],
+    'prettier/prettier': 'error',
+    'import/prefer-default-export': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+  },
+};
