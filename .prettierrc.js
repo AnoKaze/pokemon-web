@@ -8,4 +8,5 @@ module.exports = {
 	bracketSpacing: true,
   jaxBracketSameLine: false,
 	arrowParens: 'always',
+	endOfLine: 'crlf'
 };
