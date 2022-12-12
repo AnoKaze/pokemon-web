@@ -1,6 +1,6 @@
 <template>
-  <div class="type-label">
-    <div v-if="hasText">{{ type.getName() }}</div>
+  <div class="type-label" :class="typeName">
+    <span v-if="hasText" class="type-label-text">{{ type.getName() }}</span>
   </div>
 </template>
 
@@ -9,25 +9,32 @@ import { TypeEnum, Type } from '@/types/type';
 
 interface IProps {
   type: Type;
-  hasText: boolean;
+  hasText?: boolean;
 }
 const props = withDefaults(defineProps<IProps>(), { hasText: true });
-
-const typeId = ref(props.type.getId());
+const typeName = ref(TypeEnum[props.type.getId()].toLowerCase());
 </script>
 
 <style lang="scss" scoped>
-@import '@/style/type-color.sass';
-
-$hasText: v-bind(hasText);
+$hasType: v-bind(hasText);
 
 .type-label {
   height: 20px;
   border-radius: 10px;
+  display: inline-block;
+  text-align: center;
   @if hasText {
     width: 60px;
   } @else {
     width: 20px;
+  }
+
+  .type-label-text {
+    width: 40px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
