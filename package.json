@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
+    "lint": "eslint src",
     "preview": "vite preview",
     "prepare": "husky install"
   },
@@ -38,8 +39,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "pnpm run lint:eslint"
-    ],
-    "*.js": "eslint --cache --fix"
+      "eslint"
+    ]
   }
 }
