@@ -1,5 +1,5 @@
 export enum TypeEnum {
-  NORMAL,
+  NORMAL = 1,
   FIRE,
   WATER,
   ELECTRIC,
@@ -22,12 +22,14 @@ export enum TypeEnum {
 export class Type {
   private id: TypeEnum;
   private name: string;
+  private tag: string;
   private eff?: Array<number>;
   private res?: Array<number>;
 
-  constructor(id: TypeEnum, name: string, eff?: Array<number>, res?: Array<number>) {
+  constructor(id: TypeEnum, name: string, tag: string, eff?: Array<number>, res?: Array<number>) {
     this.id = id;
     this.name = name;
+    this.tag = tag;
     this.eff = eff;
     this.res = res;
   }
@@ -38,6 +40,10 @@ export class Type {
 
   getName() {
     return this.name;
+  }
+
+  getTag() {
+    return this.tag;
   }
 
   getEff() {

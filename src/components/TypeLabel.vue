@@ -1,36 +1,30 @@
 <template>
-  <div class="type-label" :class="typeName">
-    <span v-if="hasText" class="type-label-text">{{ type.getName() }}</span>
+  <div class="type-label" :class="type.getTag()" :style="width">
+    <svg-icon :name="`type-${type.getTag()}`" />
+    <div v-if="!noText" class="type-label-text">{{ type.getName() }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { TypeEnum, Type } from '@/types/type';
+import { Type } from '@/types/type';
 
 interface IProps {
   type: Type;
-  hasText?: boolean;
+  noText?: boolean;
 }
-const props = withDefaults(defineProps<IProps>(), { hasText: true });
-const typeName = ref(TypeEnum[props.type.getId()].toLowerCase());
+const props = withDefaults(defineProps<IProps>(), { noText: false });
+const width = computed(() => (props.noText ? 'width: 20px;' : 'width: 70px;'));
 </script>
 
 <style lang="scss" scoped>
-$hasType: v-bind(hasText);
-
 .type-label {
   height: 20px;
+  display: inline-flex;
+  justify-content: space-between;
   border-radius: 10px;
-  display: inline-block;
-  text-align: center;
-  @if hasText {
-    width: 60px;
-  } @else {
-    width: 20px;
-  }
 
   .type-label-text {
-    width: 40px;
+    width: 50px;
     color: #ffffff;
     text-align: center;
     font-size: 14px;
