@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
+import PokemonView from '@/views/PokemonView.vue';
 
 const routes: Array<RouteRecordRaw> = [
-	{
-		path: '/',
-		component: HomeView,
-	},
+  {
+    path: '/pokemon',
+    alias: '/',
+    component: PokemonView,
+  },
 ];
 
 const router = createRouter({
-	history: createWebHistory(),
-	routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

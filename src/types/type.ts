@@ -19,38 +19,18 @@ export enum TypeEnum {
   FAIRY,
 }
 
-export class Type {
-  private id: TypeEnum;
-  private name: string;
-  private tag: string;
-  private eff?: Array<number>;
-  private res?: Array<number>;
+export default class Type {
+  id: TypeEnum;
+  name: string;
+  tag: string;
+  eff?: number[];
+  res?: number[];
 
-  constructor(id: TypeEnum, name: string, tag: string, eff?: Array<number>, res?: Array<number>) {
+  constructor(id: TypeEnum, name: string, tag: string, eff?: number[], res?: number[]) {
     this.id = id;
     this.name = name;
     this.tag = tag;
     this.eff = eff;
     this.res = res;
-  }
-
-  getId() {
-    return this.id;
-  }
-
-  getName() {
-    return this.name;
-  }
-
-  getTag() {
-    return this.tag;
-  }
-
-  getEff() {
-    return this.eff;
-  }
-
-  getRes() {
-    return this.res;
   }
 }

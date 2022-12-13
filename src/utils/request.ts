@@ -7,7 +7,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (request) => {
-    // TODO: Add user data
     return request;
   },
   (error) => {
@@ -17,7 +16,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    if (response.data.code === 1) {
+    if (response.data.code === 0) {
       return response.data;
     }
     return Promise.reject(response.data);
