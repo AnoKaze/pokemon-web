@@ -1,18 +1,18 @@
 import Stat from '@/types/stat';
 import Type from '@/types/type';
 
-export default class pokemon {
+export default class Pokemon {
   id: number;
-  nationalId: number;
-  paldeaId: number | null;
+  nationalId: string;
+  paldeaId: string | null;
   name: string;
   type1: Type;
-  type2: Type;
+  type2?: Type;
   base?: Stat;
   ivs?: Stat;
   evs?: Stat;
 
-  constructor(id: number, nationalId: number, paldeaId: number | null, name: string, type1: Type, type2: Type, base?: Stat, ivs?: Stat, evs?: Stat) {
+  constructor(id: number, nationalId: string, paldeaId: string | null, name: string, type1: Type, type2?: Type, base?: Stat, ivs?: Stat, evs?: Stat) {
     this.id = id;
     this.nationalId = nationalId;
     this.paldeaId = paldeaId;

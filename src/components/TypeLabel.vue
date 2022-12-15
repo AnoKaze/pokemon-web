@@ -1,7 +1,7 @@
 <template>
-  <div class="type-label" :class="type.getTag()" :style="width">
-    <svg-icon :name="`type-${type.getTag()}`" />
-    <div v-if="!noText" class="type-label-text">{{ type.getName() }}</div>
+  <div class="type-label" :class="type.tag" :style="width">
+    <svg-icon :name="`type-${type.tag}`" />
+    <div v-if="!noText" class="type-label-text">{{ type.name }}</div>
   </div>
 </template>
 
