@@ -10,7 +10,7 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"lib": ["ESNext", "dom"],
-		"types": ["element-plus/global"],
+		"types": ["@varlet/ui/types"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]

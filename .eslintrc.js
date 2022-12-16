@@ -12,9 +12,9 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
-    'no-debugger': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
-    'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/resolver': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
