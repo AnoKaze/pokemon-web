@@ -1,11 +1,12 @@
 <template>
   <div class="type-label" :class="type.tag" :style="width">
-    <svg-icon :name="`type-${type.tag}`" />
+    <img :src="getTypeIcon(type.tag)" :alt="type.name" width="20" height="20" />
     <div v-if="!noText" class="type-label-text">{{ type.name }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { getTypeIcon } from '@/utils/image';
 import Type from '@/types/type';
 
 interface IProps {
@@ -13,7 +14,7 @@ interface IProps {
   noText?: boolean;
 }
 const props = withDefaults(defineProps<IProps>(), { noText: false });
-const width = computed(() => (props.noText ? 'width: 20px;' : 'width: 70px;'));
+const width = computed(() => (props.noText ? 'width: 20px;' : 'width: 60px;'));
 </script>
 
 <style lang="scss" scoped>
@@ -26,7 +27,7 @@ const width = computed(() => (props.noText ? 'width: 20px;' : 'width: 70px;'));
   border-radius: 10px;
 
   .type-label-text {
-    width: 50px;
+    width: 40px;
     color: #ffffff;
     text-align: center;
     font-size: 14px;

@@ -1,5 +1,5 @@
 export enum TypeEnum {
-  NORMAL = 1,
+  NORMAL,
   FIRE,
   WATER,
   ELECTRIC,

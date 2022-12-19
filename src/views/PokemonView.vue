@@ -3,7 +3,7 @@
     <var-table>
       <thead>
         <tr>
-          <th colspan="2">宝可梦</th>
+          <th>宝可梦</th>
           <th>帕底亚图鉴</th>
           <th>全国图鉴</th>
           <th colspan="2">属性</th>
@@ -12,11 +12,10 @@
       <tbody>
         <tr v-for="pokemon in pokemonList" :key="pokemon.formId">
           <th>{{ pokemon.name }}</th>
-          <th>{{ pokemon.name }}</th>
           <th>{{ pokemon.paldeaId === undefined ? '—' : pokemon.paldeaId }}</th>
           <th>{{ pokemon.nationalId }}</th>
-          <th :colspan="pokemon.type2 === undefined ? '2' : '1'" style="background-color: chartreuse">{{ pokemon.type1.name }}</th>
-          <th>{{ pokemon.type2?.name }}</th>
+          <th :class="pokemon.type1.tag" :colspan="pokemon.type2 === undefined ? '2' : '1'"><type-label :type="pokemon.type1" /></th>
+          <th :class="pokemon.type2?.tag"><type-label v-if="pokemon.type2" :type="pokemon.type2" /></th>
         </tr>
       </tbody>
     </var-table>
@@ -66,4 +65,6 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/styles/typeColor.scss';
+</style>
