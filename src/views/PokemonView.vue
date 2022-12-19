@@ -1,29 +1,37 @@
 <template>
-  <div>
-    <var-table>
+  <div class="view-container">
+    <table class="data-table">
       <thead>
         <tr>
-          <th>宝可梦</th>
-          <th>帕底亚图鉴</th>
+          <th colspan="2">宝可梦</th>
           <th>全国图鉴</th>
+          <th>帕底亚图鉴</th>
           <th colspan="2">属性</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="pokemon in pokemonList" :key="pokemon.formId">
-          <th>{{ pokemon.name }}</th>
-          <th>{{ pokemon.paldeaId === undefined ? '—' : pokemon.paldeaId }}</th>
-          <th>{{ pokemon.nationalId }}</th>
-          <th :class="pokemon.type1.tag" :colspan="pokemon.type2 === undefined ? '2' : '1'"><type-label :type="pokemon.type1" /></th>
-          <th :class="pokemon.type2?.tag"><type-label v-if="pokemon.type2" :type="pokemon.type2" /></th>
+        <tr v-for="pokemon in pokemonList" :key="pokemon.nationalId">
+          <td>{{ pokemon.name }}</td>
+          <td>{{ pokemon.name }}</td>
+          <td>{{ pokemon.nationalId }}</td>
+          <td>{{ pokemon.paldeaId }}</td>
+          <td :colspan="pokemon.type2 ? 1 : 2" :class="pokemon.type1.tag">
+            <img :src="getTypeIcon(pokemon.type1.tag)" />
+            <span>{{ pokemon.type1.name }}</span>
+          </td>
+          <td v-if="pokemon.type2" :class="pokemon.type2.tag">
+            <img :src="getTypeIcon(pokemon.type2.tag)" />
+            <span>{{ pokemon.type2.name }}</span>
+          </td>
         </tr>
       </tbody>
-    </var-table>
+    </table>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { listPaldeaPokemons } from '@/api/pokemon';
+import { getTypeIcon } from '@/utils/image';
 import Type, { TypeList } from '@/types/type';
 
 interface paldeaPokemon {
@@ -67,4 +75,31 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import '@/styles/typeColor.scss';
+
+.view-container {
+  width: fit-content;
+  background-color: rgb(212, 84, 85);
+  border: 3px rgb(138, 55, 55) solid;
+  border-radius: 10px;
+}
+
+.data-table {
+  border-collapse: separate;
+  td {
+    background-color: #ffffff;
+  }
+  tbody {
+    tr:last-child {
+      td {
+        &:first-child {
+          border-radius: 0px 0px 0px 5px;
+        }
+
+        &:last-child {
+          border-radius: 0px 0px 5px 0px;
+        }
+      }
+    }
+  }
+}
 </style>
