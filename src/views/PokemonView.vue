@@ -1,32 +1,30 @@
 <template>
-  <div class="view-container">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th colspan="2">宝可梦</th>
-          <th>全国图鉴</th>
-          <th>帕底亚图鉴</th>
-          <th colspan="2">属性</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="pokemon in pokemonList" :key="pokemon.nationalId">
-          <td>{{ pokemon.name }}</td>
-          <td>{{ pokemon.name }}</td>
-          <td>{{ pokemon.nationalId }}</td>
-          <td>{{ pokemon.paldeaId }}</td>
-          <td :colspan="pokemon.type2 ? 1 : 2" :class="pokemon.type1.tag">
-            <img :src="getTypeIcon(pokemon.type1.tag)" />
-            <span>{{ pokemon.type1.name }}</span>
-          </td>
-          <td v-if="pokemon.type2" :class="pokemon.type2.tag">
-            <img :src="getTypeIcon(pokemon.type2.tag)" />
-            <span>{{ pokemon.type2.name }}</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th colspan="2">宝可梦</th>
+        <th>全国图鉴</th>
+        <th>帕底亚图鉴</th>
+        <th colspan="2">属性</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="pokemon in pokemonList" :key="pokemon.nationalId">
+        <td>{{ pokemon.name }}</td>
+        <td>{{ pokemon.name }}</td>
+        <td>{{ pokemon.nationalId }}</td>
+        <td>{{ pokemon.paldeaId }}</td>
+        <td :colspan="pokemon.type2 ? 1 : 2" :class="pokemon.type1.tag">
+          <img :src="getTypeIcon(pokemon.type1.tag)" />
+          <span>{{ pokemon.type1.name }}</span>
+        </td>
+        <td v-if="pokemon.type2" :class="pokemon.type2.tag">
+          <img :src="getTypeIcon(pokemon.type2.tag)" />
+          <span>{{ pokemon.type2.name }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script lang="ts" setup>
@@ -76,15 +74,10 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import '@/styles/typeColor.scss';
 
-.view-container {
-  width: fit-content;
+.data-table {
   background-color: rgb(212, 84, 85);
   border: 3px rgb(138, 55, 55) solid;
   border-radius: 10px;
-}
-
-.data-table {
-  border-collapse: separate;
   td {
     background-color: #ffffff;
   }
