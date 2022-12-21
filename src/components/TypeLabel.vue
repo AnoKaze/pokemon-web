@@ -1,5 +1,5 @@
 <template>
-  <div class="type-label" :class="type.tag" :style="width">
+  <div class="type-label" :class="labelClass" :style="labelStyle" @click="toRoute()">
     <img :src="getTypeIcon(type.tag)" :alt="type.name" width="20" height="20" />
     <div v-if="!noText" class="type-label-text">{{ type.name }}</div>
   </div>
@@ -9,22 +9,27 @@
 import { getTypeIcon } from '@/utils/image';
 import Type from '@/types/type';
 
+const router = useRouter();
 interface IProps {
   type: Type;
+  noBackground?: boolean;
   noText?: boolean;
 }
 const props = withDefaults(defineProps<IProps>(), { noText: false });
-const width = computed(() => (props.noText ? 'width: 20px;' : 'width: 60px;'));
+
+const labelClass = computed(() => (props.noBackground ? null : `bg-${props.type.tag}`));
+const labelStyle = computed(() => ({ width: props.noText ? '20px' : '60px' }));
+
+function toRoute() {}
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/typeColor.scss';
-
 .type-label {
   height: 20px;
   display: inline-flex;
   justify-content: space-between;
   border-radius: 10px;
+  cursor: pointer;
 
   .type-label-text {
     width: 40px;

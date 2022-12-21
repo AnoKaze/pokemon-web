@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { VarletUIResolver } from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 import path from 'path';
@@ -19,11 +19,11 @@ export default defineConfig({
         globalsPropValue: true,
       },
       dts: './auto-import.d.ts',
-      resolvers: [VarletUIResolver()],
+      resolvers: [ElementPlusResolver()],
     }),
     Components({
       dirs: ['src/components'],
-      resolvers: [VarletUIResolver()],
+      resolvers: [ElementPlusResolver()],
     }),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],

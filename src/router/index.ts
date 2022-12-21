@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import PokemonView from '@/views/PokemonView.vue';
+import PokemonListView from '@/views/PokemonListView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/pokemon',
-    alias: '/',
-    component: PokemonView,
+    path: '/',
+    redirect: '/PokemonList',
+  },
+  {
+    path: '/PokemonList',
+    component: PokemonListView,
   },
 ];
 
