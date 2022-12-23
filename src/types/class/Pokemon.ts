@@ -1,5 +1,5 @@
-import Stat from '@/types/stat';
-import Type from '@/types/type';
+import Stat from '@/types/class/Stat';
+import Type from '@/types/class/Type';
 
 export default class Pokemon {
   id: number;

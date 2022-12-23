@@ -1,8 +1,9 @@
 import request from '@/utils/request';
 
-export function listPaldeaPokemons() {
+export function listRegionalPokemons(regionId: number) {
   return request({
     method: 'post',
-    url: '/pokemon/listPaldeaPokemons',
+    url: '/pokemon/listRegionalPokemons',
+    params: { regionId },
   });
 }

@@ -1,41 +1,7 @@
-export enum TypeEnum {
-  NORMAL,
-  FIRE,
-  WATER,
-  ELECTRIC,
-  GRASS,
-  ICE,
-  FIGHTING,
-  POISON,
-  GROUND,
-  FLYING,
-  PSYCHIC,
-  BUG,
-  ROCK,
-  GHOST,
-  DRAGON,
-  DARK,
-  STEEL,
-  FAIRY,
-}
+import TypeEnum from '@/types/enum/TypeEnum';
+import Type from '@/types/class/Type';
 
-export default class Type {
-  id: TypeEnum;
-  name: string;
-  tag: string;
-  eff: number[];
-  res: number[];
-
-  constructor(id: TypeEnum, name: string, tag: string, eff?: number[], res?: number[]) {
-    this.id = id;
-    this.name = name;
-    this.tag = tag;
-    this.eff = eff || [];
-    this.res = res || [];
-  }
-}
-
-export const TypeList = new Map([
+const TypeMap = new Map([
   [TypeEnum.NORMAL, new Type(TypeEnum.NORMAL, '一般', 'normal')],
   [TypeEnum.FIRE, new Type(TypeEnum.FIRE, '火', 'fire')],
   [TypeEnum.WATER, new Type(TypeEnum.WATER, '水', 'water')],
@@ -49,9 +15,11 @@ export const TypeList = new Map([
   [TypeEnum.PSYCHIC, new Type(TypeEnum.PSYCHIC, '超能力', 'psychic')],
   [TypeEnum.BUG, new Type(TypeEnum.BUG, '虫', 'bug')],
   [TypeEnum.ROCK, new Type(TypeEnum.ROCK, '岩石', 'rock')],
-  [TypeEnum.GHOST, new Type(TypeEnum.GHOST, '鬼', 'ghost')],
+  [TypeEnum.GHOST, new Type(TypeEnum.GHOST, '幽灵', 'ghost')],
   [TypeEnum.DRAGON, new Type(TypeEnum.DRAGON, '龙', 'dragon')],
   [TypeEnum.DARK, new Type(TypeEnum.DARK, '恶', 'dark')],
   [TypeEnum.STEEL, new Type(TypeEnum.STEEL, '钢', 'steel')],
   [TypeEnum.FAIRY, new Type(TypeEnum.FAIRY, '妖精', 'fairy')],
 ]);
+
+export default TypeMap;

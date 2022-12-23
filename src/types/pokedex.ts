@@ -1,4 +1,4 @@
-import Type from './type';
+import Type from '@/types/class/Type';
 
 export default interface Pokedex {
   regionalId: number;

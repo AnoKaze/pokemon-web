@@ -1,21 +1,26 @@
 <template>
   <el-table class="pokedex-table" border :data="props.data" :header-cell-style="HeaderStyleHandler" :span-method="SpanHandler" :cell-class-name="CellClassHandler">
-    <el-table-column prop="regionalId" :label="region" :formatter="formatRegionalId" header-align="center" align="center" />
-    <el-table-column prop="nationalId" label="全国" :formatter="formatNationalId" header-align="center" align="center" />
-    <el-table-column label="宝可梦" header-align="center" align="center">
+    <el-table-column prop="regionalId" :label="region" width="70px" :resizable="false" :formatter="formatRegionalId" align="center" />
+    <el-table-column prop="nationalId" label="全国" width="70px" :resizable="false" :formatter="formatNationalId" align="center" />
+    <el-table-column label="宝可梦" width="90px" :resizable="false" align="center">
       <template #default="scope">
-        <img v-lazy="{ src: getPokemonIcon(scope.row.formId) }" width="64" height="64" />
+        <img v-lazy="{ src: getPokemonIcon(scope.row.formId) }" width="64" height="64" style="cursor: pointer" @click="toRoute(scope.row.formId)" />
       </template>
     </el-table-column>
-    <el-table-column prop="name" header-align="center" align="center" />
-    <el-table-column label="属性" header-align="center" align="center">
+    <el-table-column prop="name" width="100px" :resizable="false" align="center">
+      <template #default="scope">
+        <div style="cursor: pointer" @click="toRoute(scope.row.nationalId)">{{ scope.row.name }}</div>
+        <small v-if="scope.row.subName && scope.row.subName === `${region}的样子`">{{ scope.row.subName }}</small>
+      </template>
+    </el-table-column>
+    <el-table-column label="属性" width="100px" :resizable="false" align="center">
       <template #default="scope">
         <type-label :type="scope.row.type1" no-background />
       </template>
     </el-table-column>
-    <el-table-column header-align="center" align="center">
+    <el-table-column width="100px" :resizable="false" align="center">
       <template #default="scope">
-        <type-label :type="scope.row.type2" no-background />
+        <type-label v-if="scope.row.type2" :type="scope.row.type2" no-background />
       </template>
     </el-table-column>
   </el-table>
@@ -24,14 +29,14 @@
 <script lang="ts" setup>
 import { TableColumnCtx } from 'element-plus';
 import { getPokemonIcon } from '@/utils/image';
-import Pokedex from '@/types/pokedex';
+import Pokedex from '@/types/Pokedex';
 
-interface IProps {
+const router = useRouter();
+
+const props = defineProps<{
   region: string;
   data: Pokedex[];
-}
-
-const props = defineProps<IProps>();
+}>();
 
 interface SpanParams {
   row: Pokedex;
@@ -48,7 +53,7 @@ function HeaderStyleHandler({ row, columnIndex }: { row: any; columnIndex: numbe
       return { display: 'none' };
     }
   }
-  return {};
+  return { color: '#ffffff', backgroundColor: '#111111' };
 }
 
 function SpanHandler({ row, columnIndex }: SpanParams) {
@@ -70,7 +75,7 @@ function SpanHandler({ row, columnIndex }: SpanParams) {
 }
 
 function CellClassHandler({ row, columnIndex }: SpanParams) {
-  if (columnIndex === 4) {
+  if (columnIndex === 4 && row.type1) {
     return `bg-${row.type1.tag}`;
   }
   if (columnIndex === 5 && row.type2) {
@@ -89,4 +94,15 @@ function formatNationalId(row: any) {
   nationalId = nationalId.padStart(3, '0');
   return `#${nationalId}`;
 }
+
+function toRoute(formId: string) {
+  router.push(`/pokemon/${formId}`);
+}
 </script>
+
+<style lang="scss" scoped>
+.pokedex-table {
+  width: fit-content;
+  border: 2px solid #000000;
+}
+</style>

@@ -1,12 +1,18 @@
 <template>
-  <router-view class="view-container" />
+  <el-container>
+    <el-header>
+      <div>header</div>
+    </el-header>
+    <el-main>
+      <router-view class="view-container" />
+    </el-main>
+  </el-container>
 </template>
 
 <script setup lang="ts"></script>
 
 <style lang="scss">
-.view-container {
-  width: 100%;
-  height: 100%;
+body {
+  background-color: #eeeeee;
 }
 </style>

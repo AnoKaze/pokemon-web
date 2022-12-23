@@ -7,20 +7,28 @@
 
 <script lang="ts" setup>
 import { getTypeIcon } from '@/utils/image';
-import Type from '@/types/type';
+import Type from '@/types/class/Type';
 
 const router = useRouter();
-interface IProps {
-  type: Type;
-  noBackground?: boolean;
-  noText?: boolean;
-}
-const props = withDefaults(defineProps<IProps>(), { noText: false });
+
+const props = withDefaults(
+  defineProps<{
+    type: Type;
+    noBackground?: boolean;
+    noText?: boolean;
+  }>(),
+  {
+    noBackground: false,
+    noText: false,
+  }
+);
 
 const labelClass = computed(() => (props.noBackground ? null : `bg-${props.type.tag}`));
-const labelStyle = computed(() => ({ width: props.noText ? '20px' : '60px' }));
+const labelStyle = computed(() => ({ width: props.noText ? '20px' : '70px' }));
 
-function toRoute() {}
+function toRoute() {
+  router.push(`/type/${props.type.id}`);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +40,7 @@ function toRoute() {}
   cursor: pointer;
 
   .type-label-text {
-    width: 40px;
+    width: 50px;
     color: #ffffff;
     text-align: center;
     font-size: 14px;
